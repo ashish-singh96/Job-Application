@@ -5,11 +5,13 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import connectDB from './Utils/Db.js';
 import routes from './routes/Routes.js';
+import cookieParser from 'cookie-parser';
 
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(fileUpload({useTempFiles : true}));
 

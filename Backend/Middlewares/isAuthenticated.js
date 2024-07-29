@@ -1,31 +1,20 @@
 import jwt from 'jsonwebtoken';
-const isAuthenticate = async (req, res, next) => {
+const isAuthenticate = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({ message: "Access Denied" });
+    }
+
     try {
-        const token = req.cookies.token;
-        if (!token) {
-            return res.status(401).json({
-                message: "User not authenticated",
-                success: false,
-            });
-        }
-
-        const decode = await jwt.verify(token, process.env.SECRET_KEY);
-        if (!decode) {
-            return res.status(401).json({
-                message: "Invalid token",
-                success: false
-            });
-        }
-
-        req.id = decode.userId;
+        const verified = jwt.verify(token, process.env.SECRET_KEY);
+        req.userId = verified.userId;
         next();
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: "Internal Server Error",
-            success: false
-        });
+        console.error(error);
+        res.status(400).json({ message: "Invalid Token" });
     }
 }
 
 export default isAuthenticate;
+

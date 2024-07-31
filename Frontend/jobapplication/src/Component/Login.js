@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MyContext } from '../ContextApi';
-
+import { Link } from 'react-router-dom';
 const Login = () => {
     const { handleLoginUser } = useContext(MyContext);
     const [responseMessage, setResponseMessage] = useState("");
@@ -126,7 +126,7 @@ const Login = () => {
                     <div className="mt-4 flex items-center justify-between">
                         <span className="border-b w-1/5 md:w-1/4" />
                         <span className="text-xs text-gray-500 uppercase">
-                            or sign up
+                            or <Link to={'/register'}>sign up</Link>
                         </span>
                         <span className="border-b w-1/5 md:w-1/4" />
                     </div>

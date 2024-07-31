@@ -67,7 +67,8 @@ class UserController {
                 email: User.email,
                 phone: User.phone,
                 role: User.role,
-                profile: User.profile
+                profile: User.profile,
+                token
             };
 
             return res.status(200)

@@ -1,30 +1,20 @@
 import axios from 'axios';
 import React, { createContext, useState } from 'react';
-const MyContext = createContext();
-
-// Create a provider component
-const MyProvider = ({ children }) => {
-    const [loginUser, setLoginUser] = useState(null);
-    
-
-    const handleLoginUser = async () => {
+export const MyContext = createContext();
+export const MyProvider = ({ children }) => {
+    const handleLoginUser = async (loginUser) => {
         try {
-            if (!loginUser) {
-                alert('User information is missing');
-                return;
-            }
-
-            axios.post('http://localhost:5000/login', loginUser);
+            const res = await axios.post('http://localhost:5000/login', loginUser);
         } catch (error) {
             console.log(error);
         }
     }
 
     return (
-        <MyContext.Provider value={{ loginUser, setLoginUser, handleLoginUser }}>
+        <MyContext.Provider value={{ handleLoginUser }}>
             {children}
         </MyContext.Provider>
     );
 };
 
-export { MyContext, MyProvider };
+

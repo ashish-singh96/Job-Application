@@ -1,8 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { MyContext } from '../ContextApi';
 
 const Login = () => {
-    const { loginUser, setLoginUser, handleLoginUser } = useContext(MyContext);
+    const { handleLoginUser } = useContext(MyContext);
+    const [responseMessage, setResponseMessage] = useState("");
+
+    const  [loginUser, setLoginUser] = useState({
+         email:"",
+         password:"",
+         role:"",
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -10,18 +17,19 @@ const Login = () => {
     };
 
     const handleLoginClick = async () => {
-        try {
-            const { email, password, role } = loginUser;
+        const {email, password, role} = loginUser;
 
-            if (!email || !password || !role) {
-                alert('All fields are required');
-                return;
+          if(email && password && role){
+            try {
+               await handleLoginUser(loginUser);
+                setResponseMessage("Welcome! Login Successfully.");
+            } catch (error) {
+                console.log(error);
             }
-            await handleLoginUser();
-            alert('login successfully!')
-        } catch (error) {
-            console.log(error);
-        }
+          }else{
+            setResponseMessage('Something is missing.');
+          }
+       
     }
 
     return (
@@ -73,7 +81,7 @@ const Login = () => {
                             className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                             type="email"
                             name="email"
-
+                             value={loginUser.email}
                             onChange={handleChange}
                         />
                     </div>
@@ -86,7 +94,7 @@ const Login = () => {
                             className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                             type="text"
                             name="role"
-
+                            value={loginUser.role}
                             onChange={handleChange}
                         />
                     </div>
@@ -104,9 +112,10 @@ const Login = () => {
                             className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                             type="password"
                             name="password"
-
+                            value={loginUser.password}
                             onChange={handleChange}
                         />
+                        {responseMessage && <p class="text-xs italic text-blue-600">{responseMessage}</p>}
                     </div>
                     <div className="mt-8">
 

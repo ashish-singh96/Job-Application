@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { MyContext } from '../ContextApi';
 const NavBar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const token = localStorage.getItem('Token');
+    console.log(token)
+    console.log(token, "Nav token")
     const toggleModal = () => {
         setIsModalOpen(prev => !prev);
     };
+
+    const { handleUserLogout } = useContext(MyContext);
+
+    const handleClickUser = async () => {
+        try {
+            await handleUserLogout();
+            alert("logging out")
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -66,13 +79,24 @@ const NavBar = () => {
                             </span>
                             {/* Modal */}
                             {isModalOpen && (
-                                <div className="fixed bottom-0  right-0 top-[68px] rounded-lg p-2 z-30">
+                                <div className="fixed bottom-0 right-0 top-[68px] rounded-lg p-2 z-30">
                                     <div className="justify-end mt-4 shadow-2xl">
-                                        <span className="  text-black "><Link to={'/login'}><span>Login</span></Link>/<Link to={'/register'}><span className='text-blue-600'>Register</span></Link></span><br />
-                
+                                        {
+                                            token ? <><span className="text-black">
+                                                    <Link to="/login"><span>Login</span></Link>/
+                                                    <Link to="/register"><span className="text-blue-600">Register</span></Link>
+                                                </span>
+                                                <br /></> : <><span className="text-black">
+                                                <span>Update Profile</span><br />
+                                                <button onClick={handleClickUser} className="text-blue-600 text-center">Log Out</button>
+                                            </span></>
+                                        }
+
+
                                     </div>
                                 </div>
                             )}
+
                             {/* End Modal */}
                         </div>
                     </nav>

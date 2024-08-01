@@ -11,7 +11,7 @@ export const MyProvider = ({ children }) => {
             const roleData = res.data.user.role;
             localStorage.setItem('Token', JSON.stringify(tokenData));
             localStorage.setItem('Role', JSON.stringify(roleData));
-            
+
             if (res.data.user.role === 'student') {
                 history('/')
             } else {
@@ -23,8 +23,16 @@ export const MyProvider = ({ children }) => {
         }
     }
 
+    const handleUserLogout = async () =>{
+        try {
+            axios.post('http://localhost:5000/logout');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <MyContext.Provider value={{ handleLoginUser }}>
+        <MyContext.Provider value={{ handleLoginUser , handleUserLogout}}>
             {children}
         </MyContext.Provider>
     );

@@ -9,23 +9,24 @@ import Login from './Component/Login';
 import PublicRoute from './Protected/PublicRoute';
 import DashBoard from './Admin/DashBoard';
 import PrivateRoute from './Protected/PrivateRoute';
+import RegisteredCompany from './Admin/RegisteredCompany';
+
 function App() {
   return (
     <div>
-      <NavBar />
       <Routes>
         <Route element={<PublicRoute/>}>
-          <Route path='/' element={<Home />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/job' element={<Job />} />
-          <Route path='/job-portal' element={<JobPortal />} />
+          <Route path='/' element={<><NavBar /><Home /></>} />
+          <Route path='/register' element={<><NavBar /><Register /></>} />
+          <Route path='/login' element={<><NavBar /><Login /></>} />
+          <Route path='/job' element={<><NavBar /><Job /></>} />
+          <Route path='/job-portal' element={<><NavBar /><JobPortal /></>} />
         </Route>
-        {/* //Private Routing */}
+        {/* Private Routing */}
         <Route element={<PrivateRoute/>}>
-          <Route path='/admin/dashboard' element = {<DashBoard/>}/>
+          <Route path='/admin/dashboard' element={<DashBoard/>}/>
+          <Route path='/admin/registered-company' element={<><RegisteredCompany/><DashBoard/></>}/>
         </Route>
-
       </Routes>
     </div>
   );

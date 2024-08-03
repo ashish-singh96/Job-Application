@@ -48,7 +48,7 @@ const Home = () => {
             </div>
 
             {/* Search bar */}
-            <div className="flex items-center justify-center pt-5">
+            <div className="flex items-center justify-center pt-1">
                 <div className="relative my-6 w-1/2 md:w-1/3 flex items-center justify-center">
                     <input
                         id="id-s03"

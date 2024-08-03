@@ -1,25 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MyContext } from '../ContextApi';
+
 const NavBar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const token = localStorage.getItem('Token');
-    console.log(token)
-    console.log(token, "Nav token")
+
     const toggleModal = () => {
         setIsModalOpen(prev => !prev);
     };
 
     const { handleUserLogout } = useContext(MyContext);
-
+    console.log(token, "token")
     const handleClickUser = async () => {
         try {
-            await handleUserLogout();
-            alert("logging out")
+            const res = await handleUserLogout();
+            alert("logging out");
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <>
@@ -66,44 +66,64 @@ const NavBar = () => {
                                 </span>
                             </li>
                         </ul>
-                        <div className="flex items-center px-6 ml-auto  lg:ml-0 lg:p-0">
-                            {/* Avatar */}
-                            <span className="relative inline-flex cursor-pointer items-center justify-center w-10 h-10 text-white rounded-full overflow-hidden">
-                                <img
-                                    src="../../Images/profile.JPG"
-                                    alt="user name"
-                                    title="user name"
-                                    className="w-full h-full object-fit rounded-full"
-                                    onClick={toggleModal}
-                                />
-                            </span>
-                            {/* Modal */}
-                            {isModalOpen && (
-                                <div className="fixed bottom-0 right-0 top-[68px] rounded-lg p-2 z-30">
-                                    <div className="justify-end mt-4 shadow-2xl">
-                                        {
-                                            token ? <><span className="text-black">
+                        {
+                            !token ? (<>
+                                <div className="flex items-center px-6 ml-auto lg:ml-0 lg:p-0">
+                                   
+                                    <span className="relative inline-flex cursor-pointer items-center justify-center w-10 h-10 text-white rounded-full overflow-hidden">
+                                        <img
+                                            src="../../Images/profile.JPG"
+                                            alt="user name"
+                                            title="user name"
+                                            className="w-full h-full object-fit rounded-full"
+                                            onClick={toggleModal}
+                                        />
+                                    </span>
+
+
+                                    {isModalOpen && (
+                                        <div className="fixed bottom-0 right-0 top-[68px] rounded-lg z-30">
+                                            <div className="justify-end mt-2 shadow-2xl p-4 rounded-lg">
+                                                <span className="text-black">
                                                     <Link to="/login"><span>Login</span></Link>/
                                                     <Link to="/register"><span className="text-blue-600">Register</span></Link>
                                                 </span>
-                                                <br /></> : <><span className="text-black">
-                                                <span>Update Profile</span><br />
-                                                <button onClick={handleClickUser} className="text-blue-600 text-center">Log Out</button>
-                                            </span></>
-                                        }
-
-
-                                    </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            </>) : (<>
+                                <div className="flex items-center px-6 ml-auto lg:ml-0 lg:p-0">
+                                   
+                                    <span className="relative inline-flex cursor-pointer items-center justify-center w-10 h-10 text-white rounded-full overflow-hidden">
+                                        <img
+                                            src="../../Images/profile.JPG"
+                                            alt="user name"
+                                            title="user name"
+                                            className="w-full h-full object-fit rounded-full"
+                                            onClick={toggleModal}
+                                        />
+                                    </span>
 
-                            {/* End Modal */}
-                        </div>
+
+                                    {isModalOpen && (
+                                        <div className="fixed bottom-0 right-0 top-[68px] p-1 z-30">
+                                            <div className="justify-end mt-2 shadow-2xl p-4 rounded-lg">
+                                                <span className="text-black">
+                                                    <button><span >Edit Profile</span></button><br/>
+                                                    <button onClick={handleClickUser}><span className="text-blue-600">Logout</span></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </>)
+                        }
                     </nav>
                 </div>
             </header>
         </>
     );
-}
+};
 
 export default NavBar;

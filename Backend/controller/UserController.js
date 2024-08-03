@@ -68,14 +68,16 @@ class UserController {
                 phone: User.phone,
                 role: User.role,
                 profile: User.profile,
-                token
+                
+                token,
             };
 
             return res.status(200)
-                .cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'strict' })
+                .cookie("token", token)
                 .json({
                     message: `Welcome back ${responseUser.fullName}`,
                     user: responseUser,
+                    
                 });
 
         } catch (error) {
@@ -86,14 +88,15 @@ class UserController {
 
     static logout = async (req, res) => {
         try {
-            return res.status(200)
-                .cookie("token", "", { maxAge: 0, httpOnly: true, sameSite: 'strict' })
-                .json({ message: "Logged out successfully!" });
+            res.clearCookie("token");
+            return res.status(200).json({ message: "Logged out successfully!" });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: "Internal Server Error!" });
+            return res.status(500).json({ message: "Internal Server Error!" });
         }
     }
+    
+    
 
     static updateProfile = async (req, res) => {
         try {

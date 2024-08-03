@@ -26,13 +26,23 @@ export const MyProvider = ({ children }) => {
     const handleUserLogout = async () =>{
         try {
             axios.post('http://localhost:5000/logout');
+            localStorage.removeItem("Token")
         } catch (error) {
             console.log(error);
         }
     }
 
+    const handleCompanyInsert = async (company) => {
+        try {
+            axios.post('http://localhost:5000/company_insert', company);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
-        <MyContext.Provider value={{ handleLoginUser , handleUserLogout}}>
+        <MyContext.Provider value={{ handleLoginUser , handleUserLogout, handleCompanyInsert}}>
             {children}
         </MyContext.Provider>
     );

@@ -10,6 +10,7 @@ import PublicRoute from './Protected/PublicRoute';
 import DashBoard from './Admin/DashBoard';
 import PrivateRoute from './Protected/PrivateRoute';
 import RegisteredCompany from './Admin/RegisteredCompany';
+import CompanyDetails from './Admin/CompanyDetails';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route element={<PrivateRoute/>}>
           <Route path='/admin/dashboard' element={<DashBoard/>}/>
           <Route path='/admin/registered-company' element={<><RegisteredCompany/><DashBoard/></>}/>
+          <Route path='/admin/company-details/:companyId' element={<><CompanyDetails/><DashBoard/></>}/>
         </Route>
       </Routes>
     </div>

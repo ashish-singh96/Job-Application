@@ -1,9 +1,18 @@
 import axios from 'axios';
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 export const MyContext = createContext();
 export const MyProvider = ({ children }) => {
     const history = useNavigate();
+    const [allCompanies, setAllcompanies] = useState([]);
+
+      
+    console.log(allCompanies,"allCompanies")
+      useEffect(()=>{
+         getAllCompanies();
+         
+      },[])
+
     const handleLoginUser = async (loginUser) => {
         try {
             const res = await axios.post('http://localhost:5000/login', loginUser);
@@ -41,8 +50,18 @@ export const MyProvider = ({ children }) => {
     }
 
 
+    const getAllCompanies = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/company_get');
+            setAllcompanies(res.data.company);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
-        <MyContext.Provider value={{ handleLoginUser , handleUserLogout, handleCompanyInsert}}>
+        <MyContext.Provider value={{ handleLoginUser , handleUserLogout, handleCompanyInsert, allCompanies}}>
             {children}
         </MyContext.Provider>
     );

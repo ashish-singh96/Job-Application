@@ -9,8 +9,9 @@ import Login from './Component/Login';
 import PublicRoute from './Protected/PublicRoute';
 import DashBoard from './Admin/DashBoard';
 import PrivateRoute from './Protected/PrivateRoute';
-import RegisteredCompany from './Admin/RegisteredCompany';
+import InsertCompany from './Admin/InsertCompany';
 import CompanyDetails from './Admin/CompanyDetails';
+import RegisteredCompany from './Admin/RegisteredCompany';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         {/* Private Routing */}
         <Route element={<PrivateRoute/>}>
           <Route path='/admin/dashboard' element={<DashBoard/>}/>
+          <Route path='/admin/insert-company' element={<><InsertCompany/><DashBoard/></>}/>
           <Route path='/admin/registered-company' element={<><RegisteredCompany/><DashBoard/></>}/>
           <Route path='/admin/company-details/:companyId' element={<><CompanyDetails/><DashBoard/></>}/>
         </Route>

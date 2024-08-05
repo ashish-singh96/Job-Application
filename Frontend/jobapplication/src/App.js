@@ -12,12 +12,13 @@ import PrivateRoute from './Protected/PrivateRoute';
 import InsertCompany from './Admin/InsertCompany';
 import CompanyDetails from './Admin/CompanyDetails';
 import RegisteredCompany from './Admin/RegisteredCompany';
+import InsertJob from './Admin/InsertJob';
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route element={<PublicRoute/>}>
+        <Route element={<PublicRoute />}>
           <Route path='/' element={<><NavBar /><Home /></>} />
           <Route path='/register' element={<><NavBar /><Register /></>} />
           <Route path='/login' element={<><NavBar /><Login /></>} />
@@ -25,11 +26,12 @@ function App() {
           <Route path='/job-portal' element={<><NavBar /><JobPortal /></>} />
         </Route>
         {/* Private Routing */}
-        <Route element={<PrivateRoute/>}>
-          <Route path='/admin/dashboard' element={<DashBoard/>}/>
-          <Route path='/admin/insert-company' element={<><InsertCompany/><DashBoard/></>}/>
-          <Route path='/admin/registered-company' element={<><RegisteredCompany/><DashBoard/></>}/>
-          <Route path='/admin/company-details/:companyId' element={<><CompanyDetails/><DashBoard/></>}/>
+        <Route element={<PrivateRoute />}>
+          <Route path='/admin/dashboard' element={<DashBoard />} />
+          <Route path='/admin/insert-company' element={<><InsertCompany /><DashBoard /></>} />
+          <Route path='/admin/registered-company' element={<><RegisteredCompany /><DashBoard /></>} />
+          <Route path='/admin/insert-job/:id' element={<><InsertJob /><DashBoard /></>} />
+          <Route path='/admin/company-details/:companyId' element={<><CompanyDetails /><DashBoard /></>} />
         </Route>
       </Routes>
     </div>

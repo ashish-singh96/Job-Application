@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../ContextApi';
-
+import { Link } from 'react-router-dom';
 const RegisteredCompany = () => {
     const { allCompanies } = useContext(MyContext);
 
@@ -46,6 +46,7 @@ const RegisteredCompany = () => {
                                             {allCompanies.map((company, index) => {
                                                 const date = new Date(company.createdAt);
                                                 const formattedDate = date.toLocaleDateString();
+                                                const id = company._id;
                                                 return (
                                                     <tr key={index}>
                                                         <td className="px-6 py-4 text-center whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
@@ -58,12 +59,14 @@ const RegisteredCompany = () => {
                                                             {formattedDate}
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                                            <button
+                                                           <Link to={`/admin/insert-job/${id}`}>
+                                                           <button
                                                                 type="button"
                                                                 className="inline-flex bg-blue-400 gap-4 p-2 items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-white  focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 mr-2"
                                                             >
                                                                 Job Insert
                                                             </button>
+                                                           </Link>
 
                                                             <button
                                                                 type="button"

@@ -5,9 +5,6 @@ export const MyContext = createContext();
 export const MyProvider = ({ children }) => {
     const history = useNavigate();
     const [allCompanies, setAllcompanies] = useState([]);
-
-      
-    console.log(allCompanies,"allCompanies")
       useEffect(()=>{
          getAllCompanies();
          

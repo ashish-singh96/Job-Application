@@ -10,7 +10,6 @@ import PublicRoute from './Protected/PublicRoute';
 import DashBoard from './Admin/DashBoard';
 import PrivateRoute from './Protected/PrivateRoute';
 import InsertCompany from './Admin/InsertCompany';
-import CompanyDetails from './Admin/CompanyDetails';
 import RegisteredCompany from './Admin/RegisteredCompany';
 import InsertJob from './Admin/InsertJob';
 
@@ -31,7 +30,7 @@ function App() {
           <Route path='/admin/insert-company' element={<><InsertCompany /><DashBoard /></>} />
           <Route path='/admin/registered-company' element={<><RegisteredCompany /><DashBoard /></>} />
           <Route path='/admin/insert-job/:id' element={<><InsertJob /><DashBoard /></>} />
-          <Route path='/admin/company-details/:companyId' element={<><CompanyDetails /><DashBoard /></>} />
+    
         </Route>
       </Routes>
     </div>

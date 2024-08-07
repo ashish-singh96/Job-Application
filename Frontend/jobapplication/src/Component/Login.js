@@ -1,36 +1,38 @@
 import React, { useContext, useState } from 'react';
 import { MyContext } from '../ContextApi';
 import { Link } from 'react-router-dom';
+
 const Login = () => {
     const { handleLoginUser } = useContext(MyContext);
     const [responseMessage, setResponseMessage] = useState("");
 
-    const  [loginUser, setLoginUser] = useState({
-         email:"",
-         password:"",
-         role:"",
-    })
+    const [loginUser, setLoginUser] = useState({
+        email: "",
+        password: "",
+        role: "",
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setLoginUser({...loginUser, [name]:value});
+        setLoginUser({ ...loginUser, [name]: value });
     };
 
     const handleLoginClick = async () => {
-        const {email, password, role} = loginUser;
+        const { email, password, role } = loginUser;
 
-          if(email && password && role){
+        if (email && password && role) {
             try {
-               await handleLoginUser(loginUser);
+             const res = await handleLoginUser(loginUser);
+             console.log(res,"res login page")
                 setResponseMessage("Welcome! Login Successfully.");
             } catch (error) {
                 console.log(error);
+                setResponseMessage('Login failed.');
             }
-          }else{
+        } else {
             setResponseMessage('Something is missing.');
-          }
-       
-    }
+        }
+    };
 
     return (
         <div className="py-16">
@@ -81,11 +83,10 @@ const Login = () => {
                             className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                             type="email"
                             name="email"
-                             value={loginUser.email}
+                            value={loginUser.email}
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="mt-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Role
@@ -98,7 +99,6 @@ const Login = () => {
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="mt-4">
                         <div className="flex justify-between">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -115,10 +115,9 @@ const Login = () => {
                             value={loginUser.password}
                             onChange={handleChange}
                         />
-                        {responseMessage && <p class="text-xs italic text-blue-600">{responseMessage}</p>}
                     </div>
+                    {responseMessage && <p className="text-xs italic text-blue-600">{responseMessage}</p>}
                     <div className="mt-8">
-
                         <button onClick={handleLoginClick} className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
                             Login
                         </button>

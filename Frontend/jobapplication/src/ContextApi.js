@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [allCompanies, setAllCompanies] = useState([]);
-    const [insertJob, setInsertJob] = useState([]);
 
     useEffect(() => {
         getAllCompanies();
@@ -18,16 +17,16 @@ export const MyProvider = ({ children }) => {
             const res = await axios.post('http://localhost:5000/login', loginUser);
             const tokenData = res.data.user.token;
             const roleData = res.data.user.role;
-            localStorage.setItem('Token', tokenData); // No need to stringify
+            localStorage.setItem('Token', tokenData);
             localStorage.setItem('Role', roleData);
-
-            if (res.data.user.role === 'student') {
-                history('/');
+    
+            if (roleData === 'student') {
+                navigate('/');
             } else {
-                history('/admin/dashboard');
+                navigate('/admin/dashboard');
             }
         } catch (error) {
-            console.log(error);
+            console.error('Login failed:', error.response ? error.response.data : error.message);
         }
     };
 
@@ -72,14 +71,28 @@ export const MyProvider = ({ children }) => {
 
     const InsertJob = async (insertJob) => {
         try {
+            const token = localStorage.getItem('Token'); // Ensure the key name matches how you store it
             const res = await axios.post('http://localhost:5000/job_insert', insertJob, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('Token')}`
+                    Authorization: `Bearer ${token}`
                 }
             });
-            console.log(res, "Job inserted");
+            console.log(res.data, "Job inserted successfully");
         } catch (error) {
-            console.log(error);
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.error('Response data:', error.response.data);
+                console.error('Response status:', error.response.status);
+                console.error('Response headers:', error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.error('Request data:', error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error('Error message:', error.message);
+            }
+            console.error('Error config:', error.config);
         }
     };
 

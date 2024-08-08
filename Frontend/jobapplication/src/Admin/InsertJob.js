@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const InsertJob = () => {
     const { id } = useParams();
-    const { InsertJob: InsertJobContext } = useContext(MyContext);
+    const { InsertJob } = useContext(MyContext);
 
     const [insertJob, setInsertJob] = useState({
         title: "",
@@ -45,17 +45,11 @@ const InsertJob = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token'); // or however you store your token
         try {
-            const res = await axios.post('http://localhost:5000/job_insert', insertJob, {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Adjust according to your auth scheme
-                },
-            });
-            alert("Job Inserted Successfully");
+            await InsertJob(insertJob);
+            alert("done")
         } catch (error) {
-            console.error('Error inserting job:', error);
-            alert(`Failed to insert job: ${error.message}`);
+            console.log(error);
         }
     };
 

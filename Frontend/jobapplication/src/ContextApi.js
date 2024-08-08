@@ -68,10 +68,17 @@ export const MyProvider = ({ children }) => {
             console.log(error);
         }
     };
-
+    
     const InsertJob = async (insertJob) => {
         try {
+            console.log(insertJob, "insert job");
             const token = localStorage.getItem('Token'); // Ensure the key name matches how you store it
+    
+            if (!token) {
+                console.error("Token not found in localStorage");
+                return;
+            }
+    
             const res = await axios.post('http://localhost:5000/job_insert', insertJob, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -95,7 +102,6 @@ export const MyProvider = ({ children }) => {
             console.error('Error config:', error.config);
         }
     };
-
     return (
         <MyContext.Provider value={{ handleLoginUser, handleUserLogout, handleCompanyInsert, allCompanies, InsertJob }}>
             {children}

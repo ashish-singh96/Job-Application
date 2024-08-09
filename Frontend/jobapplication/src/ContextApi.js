@@ -7,9 +7,11 @@ export const MyContext = createContext();
 export const MyProvider = ({ children }) => {
     const navigate = useNavigate();
     const [allCompanies, setAllCompanies] = useState([]);
+    const [allJobs, setAllJobs] = useState([]);
 
     useEffect(() => {
         getAllCompanies();
+        getAllJobs();
     }, []);
 
     const handleLoginUser = async (loginUser) => {
@@ -59,9 +61,6 @@ export const MyProvider = ({ children }) => {
     const getAllCompanies = async () => {
         try {
             const res = await axios.get('http://localhost:5000/company_get', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('Token')}`
-                }
             });
             setAllCompanies(res.data.company);
         } catch (error) {
@@ -102,8 +101,20 @@ export const MyProvider = ({ children }) => {
             console.error('Error config:', error.config);
         }
     };
+
+    const getAllJobs = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/get_all_jobs', {
+            });
+            setAllJobs(res.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
     return (
-        <MyContext.Provider value={{ handleLoginUser, handleUserLogout, handleCompanyInsert, allCompanies, InsertJob }}>
+        <MyContext.Provider value={{ handleLoginUser, handleUserLogout, handleCompanyInsert, allCompanies, InsertJob ,allJobs}}>
             {children}
         </MyContext.Provider>
     );

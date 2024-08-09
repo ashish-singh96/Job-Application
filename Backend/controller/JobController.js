@@ -45,6 +45,21 @@ class JobController {
         }
     }
 
+
+    static get_all_jobs = async (req, res) => {
+        try {
+            const data = await Job.find();
+            if(data){
+              res.status(200).json({message:"Job gets successfully!", data});
+            }else{
+                res.status(403).json({message:"Job not find!"});
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message:"Internal Server error"})
+        }
+    }
+
     
 };
 

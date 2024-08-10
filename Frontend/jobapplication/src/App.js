@@ -12,6 +12,7 @@ import PrivateRoute from './Protected/PrivateRoute';
 import InsertCompany from './Admin/InsertCompany';
 import RegisteredCompany from './Admin/RegisteredCompany';
 import InsertJob from './Admin/InsertJob';
+import JobViewDetails from './Component/JobViewDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/register' element={<><NavBar /><Register /></>} />
           <Route path='/login' element={<><NavBar /><Login /></>} />
           <Route path='/job' element={<><NavBar /><Job /></>} />
+          <Route path='/job-view/:id' element={<><NavBar /><JobViewDetails/></>} />
           <Route path='/job-portal' element={<><NavBar /><JobPortal /></>} />
         </Route>
         {/* Private Routing */}

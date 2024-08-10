@@ -118,18 +118,18 @@ const Home = () => {
                                 return (
                                     <div key={index} className="overflow-hidden bg-white rounded-lg shadow-md text-slate-500 shadow-slate-200">
                                         <div className="p-6">
-                                            <h3 className="text-xl font-medium text-slate-700">Google</h3>
+                                            <h3 className="text-xl font-medium text-slate-700">{item.companyName}</h3>
                                             <h1 className="text-2xl font-semibold text-slate-900">India</h1>
-                                            <h3 className="text-xl font-medium text-black">Full Stack Developer</h3>
+                                            <h3 className="text-xl font-medium text-black">{item.title}</h3>
                                             <p className="mt-1 text-sm text-slate-600 text-justify">
-                                                As a Full Stack Developer at Google, you'll be responsible for building and maintaining scalable and high-performance web applications. You will work with cutting-edge technologies and collaborate with cross-functional teams to deliver innovative solutions. Your role will include designing robust and scalable architecture, developing new features, and ensuring code quality and performance.
+                                               {item.description}
                                             </p>
                                         </div>
                                         <div className='mx-4 p-5'>
                                             <div className='grid grid-cols-3 gap-4'>
                                                 <span className='text-blue-600 rounded-full text-center bg-gray-100'>{item.position}</span>
                                                 <span className='bg-gray-100 text-center rounded-full text-black'>{item.salary} LPA</span>
-                                                <span className='text-orange-400 text-center rounded-full bg-gray-100'>Full Time</span>
+                                                <span className='text-orange-400 text-center rounded-full bg-gray-100'>{item.jobType}</span>
                                             </div>
                                         </div>
                                     </div>

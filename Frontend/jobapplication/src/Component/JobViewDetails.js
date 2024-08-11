@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const JobViewDetails = () => {
     return (
         <>
@@ -15,9 +15,12 @@ const JobViewDetails = () => {
                         </div>
 
                         <div className="flex items-center space-x-4">
-                            <button className="rounded-lg border border-blue-500 bg-blue-600 px-6 py-2 text-white text-sm font-semibold shadow-md hover:bg-blue-700 transition-colors duration-300">
-                                Apply
-                            </button>
+                            <Link to={'/apply-job'} target='_blank'>
+                                <button className="rounded-lg border border-blue-500 bg-blue-600 px-6 py-2 text-white text-sm font-semibold shadow-md hover:bg-blue-700 transition-colors duration-300">
+                                    Apply
+                                </button>
+                            </Link>
+
                         </div>
                     </div>
                     <div className="p-6">

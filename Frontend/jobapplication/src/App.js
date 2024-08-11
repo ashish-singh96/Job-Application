@@ -13,6 +13,7 @@ import InsertCompany from './Admin/InsertCompany';
 import RegisteredCompany from './Admin/RegisteredCompany';
 import InsertJob from './Admin/InsertJob';
 import JobViewDetails from './Component/JobViewDetails';
+import ApplyJob from './Component/ApplyJob';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/login' element={<><NavBar /><Login /></>} />
           <Route path='/job' element={<><NavBar /><Job /></>} />
           <Route path='/job-view/:id' element={<><NavBar /><JobViewDetails/></>} />
+          <Route path='/apply-job' element ={<><ApplyJob/></>}/>
           <Route path='/job-portal' element={<><NavBar /><JobPortal /></>} />
         </Route>
         {/* Private Routing */}

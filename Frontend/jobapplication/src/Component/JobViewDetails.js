@@ -3,8 +3,6 @@ import React from 'react'
 const JobViewDetails = () => {
     return (
         <>
-
-
             <div className="flex items-center justify-center pt-10 mb-12">
                 <div className="w-9/12 rounded-lg border border-gray-200 bg-white shadow-lg">
                     <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">

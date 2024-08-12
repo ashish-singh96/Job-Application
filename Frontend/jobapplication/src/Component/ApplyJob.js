@@ -420,21 +420,21 @@ const ApplyJob = () => {
 
             {/* Resume */}
             <section className='p-6 mx-4 sm:mx-14 mt-5'>
-    <div className='text-start'>
-        <strong className='text-2xl text-gray-800'>
-            Resume<span className='text-red-700'>*</span>
-        </strong>
+                <div className='text-start'>
+                    <strong className='text-2xl text-gray-800'>
+                        Resume<span className='text-red-700'>*</span>
+                    </strong>
 
-        <div className='border-dashed border-2 border-gray-400 rounded-lg h-20 w-full flex items-center justify-center mt-3'>
-            <label className='text-gray-500 cursor-pointer  flex items-center justify-center h-full w-full'>
-                <input type='file' className='sr-only ' />
-                <span className='text-gray-600 font-bold'>Browse resume</span>
-                <span className='mx-1'>or</span>
-                <span className='text-gray-500'>just drop it here </span>
-            </label>
-        </div>
-    </div>
-</section>
+                    <div className='border-dashed border-2 border-gray-400 rounded-lg h-20 w-full flex items-center justify-center mt-3'>
+                        <label className='text-gray-500 cursor-pointer  flex items-center justify-center h-full w-full'>
+                            <input type='file' className='sr-only ' />
+                            <span className='text-gray-600 font-bold'>Browse resume</span>
+                            <span className='mx-1'>or</span>
+                            <span className='text-gray-500'>just drop it here </span>
+                        </label>
+                    </div>
+                </div>
+            </section>
 
 
 

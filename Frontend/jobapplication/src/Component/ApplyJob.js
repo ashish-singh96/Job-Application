@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 const ApplyJob = () => {
     // Initialize state to manage checkbox status
     const [isChecked, setIsChecked] = useState(false);
@@ -437,9 +438,32 @@ const ApplyJob = () => {
             </section>
 
 
+            {/* Message to Hiring Manager */}
 
+            <section className='p-6 mx-4 sm:mx-14 mt-5'>
+                <div className='text-start'>
+                    <strong className='text-2xl text-gray-800'>
+                        Message to Hiring Manager<span className='text-red-700'>*</span>
+                    </strong>
+                    <p className='text-gray-600 text-sm mt-4'>
+                        Let the company know about your interest working there.
+                    </p>
+
+                    <textarea className='border border-gray-400 w-full mt-1 outline-none px-4' rows={5}>
+
+                    </textarea>
+                </div>
+            </section>
+
+            <div className='border mx-4 sm:mx-10 border-b mt-4 mb-8 border-gray-400'></div>
+            <div className="flex justify-end mb-11 px-16">
+                <Link to={'/apply-job/screening'}>
+                    <button className="px-12 py-1 rounded-full text-center text-white bg-[#365679]">
+                        Next
+                    </button>
+                </Link>
+            </div>
         </div>
-
     )
 }
 

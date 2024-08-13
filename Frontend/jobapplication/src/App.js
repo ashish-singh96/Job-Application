@@ -14,6 +14,7 @@ import RegisteredCompany from './Admin/RegisteredCompany';
 import InsertJob from './Admin/InsertJob';
 import JobViewDetails from './Component/JobViewDetails';
 import ApplyJob from './Component/ApplyJob';
+import Screening from './Component/Screening';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/job' element={<><NavBar /><Job /></>} />
           <Route path='/job-view/:id' element={<><NavBar /><JobViewDetails/></>} />
           <Route path='/apply-job' element ={<><ApplyJob/></>}/>
+          <Route path='/apply-job/screening' element ={<><Screening/></>}/>
           <Route path='/job-portal' element={<><NavBar /><JobPortal /></>} />
         </Route>
         {/* Private Routing */}

@@ -22,7 +22,7 @@ const Screening = () => {
     const handleCollegeChange = (event) => {
         setCollege(event.target.value);
     }
-   
+
     const handleSkillsChange = (event) => {
         setSkills(event.target.value);
     }
@@ -139,7 +139,7 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        What is your current/last annual CTC/monthly stipend?
+                            What is your current/last annual CTC/monthly stipend?
                             <span className='text-red-700'>*</span>
                         </label>
                         <div className="relative">
@@ -175,7 +175,7 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        Which college you graduated from? (or currently studying)
+                            Which college you graduated from? (or currently studying)
                             <span className='text-red-700'>*</span>
                         </label>
                         <div className="relative">
@@ -208,7 +208,7 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        Select the skills applicable to you?
+                            Select the skills applicable to you?
                             <span className='text-red-700'>*</span>
                         </label>
                         <div className="relative">
@@ -242,7 +242,7 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        What is your story? Tell us what drives you, and help us get to know you. (~500 words)
+                            What is your story? Tell us what drives you, and help us get to know you. (~500 words)
                         </label>
                         <textarea rows={30} className='w-full border border-gray-700 outline-none pl-2 h-8 mt-1'></textarea>
                     </div>
@@ -253,7 +253,7 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        When can you start the internship? (applicable only for the internship role)
+                            When can you start the internship? (applicable only for the internship role)
                         </label>
                         <input type='text' className='w-full border border-gray-700 outline-none pl-2 h-8 mt-1'></input>
                     </div>
@@ -263,14 +263,36 @@ const Screening = () => {
                 <div className='w-full flex space-x-4 mt-4'>
                     <div className='w-full'>
                         <label className='text-sm text-gray-700'>
-                        How long you are available for the internship? (applicable only for the internship role)
+                            How long you are available for the internship? (applicable only for the internship role)
                         </label>
                         <input type='text' className='w-full border border-gray-700 outline-none pl-2 h-8 mt-1'></input>
                     </div>
                 </div>
-                
-                
+
+
             </section>
+
+
+            <div className='border mx-4 sm:mx-10 border-b mt-4 mb-8 border-gray-400'></div>
+
+            <div className='flex'>
+                <div className='w-1/2'>
+                    <div>
+                        <button className="px-12 mx-10 py-2.5 rounded-full text-center text-white bg-[#365679]">
+                            Back
+                        </button>
+                    </div>
+                </div>
+
+                <div className='w-1/2'>
+                    <div className="flex justify-end px-16">
+                        <button className="px-12 py-2.5 mb-6 rounded-full text-center text-white bg-[#365679]">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

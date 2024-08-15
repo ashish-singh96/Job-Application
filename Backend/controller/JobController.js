@@ -1,66 +1,36 @@
 import Job from "../model/JobModel.js";
-import Company from "../model/CompanyModel.js";
-class JobController {
 
+class JobController {
     static insert_job = async (req, res) => {
         try {
-            const { title, description, requirements, salary, location, jobType, experienceLevel, position, companyId } = req.body;
+            const { job_overview, job_title, contract_duration, location, salary, positions, job_summary, responsibilities, requirements, schedule, supplementalPay, hrEmail } = req.body;
 
-            const userId = req.userId;
-
-            if (!userId) {
-                return res.status(400).json({ message: "User ID is missing" });
+            if (!job_overview || !job_title || !contract_duration || !location || !salary || !positions || !job_summary || !responsibilities || !requirements || !schedule || !supplementalPay || !hrEmail) {
+                res.status(403).json({ message: "Something is missing!" });
             }
 
-            if (!title || !description || !requirements || !salary || !location || !jobType || !experienceLevel || !companyId || !position) {
-                return res.status(403).json({ message: "All fields are required" });
-            }
-
-            // Check if the company exists
-            const companyExists = await Company.findById(companyId);
-            if (!companyExists) {
-                return res.status(404).json({ message: "Company not found" });
-            }
-
-            // Create new job
-            const job = new Job({
-                title,
-                description,
+            const data = new Job({
+                job_overview: job_overview,
+                job_title: job_title,
+                contract_duration: contract_duration,
+                location: location,
+                salary: salary,
+                positions: positions,
+                job_summary: job_summary,
+                responsibilities: responsibilities.split(','),
                 requirements: requirements.split(","),
-                salary,
-                location,
-                jobType,
-                experienceLevel,
-                company: companyId,
-                create_by: userId,
-                position,
-            });
+                schedule: schedule.split(","),
+                supplementalPay: supplementalPay.split(","),
+                hrEmail: hrEmail,
+            })
 
-            await job.save();
-            res.status(200).json({ message: "Job posted successfully!", job });
-
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    }
-
-
-    static get_all_jobs = async (req, res) => {
-        try {
-            const data = await Job.find();
-            if(data){
-              res.status(200).json({message:"Job gets successfully!", data});
-            }else{
-                res.status(403).json({message:"Job not find!"});
-            }
+            await data.save();
+            res.status(200).json({ message: "Job Insert Successfully!" });
         } catch (error) {
             console.log(error);
-            res.status(500).json({message:"Internal Server error"})
+            res.status(500).json({ message: "Internal Server Error" });
         }
     }
-
-    
 };
 
 export default JobController;

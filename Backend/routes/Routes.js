@@ -18,6 +18,6 @@ routes.get('/company_get_one/:id', CompanyController.get_one_company);
 routes.put('/company_update/:id', CompanyController.update_company);
 
 
-routes.post('/job_insert', isAuthenticate, JobController.insert_job);
-routes.get('/get_all_jobs', JobController.get_all_jobs);
+routes.post('/insert_job', JobController.insert_job);
+
 export default routes;
